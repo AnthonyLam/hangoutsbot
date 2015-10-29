@@ -2,9 +2,9 @@ import plugins,re,calendar
 
 def _initialise(bot):
     self.schedule = Schedule()
+    plugins.register_user_command(["schedule"])
 
 
-@command.register(admin=False)
 def schedule(bot,event,date=None,item=None,*args):
     yield from bot.coro_send_message(event.conf,_(calendar.HTMLCalendar().formatmonth(2015,11)))
     
