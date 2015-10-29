@@ -6,7 +6,7 @@ def _initialise(bot):
 
 
 def schedule(bot,event,date=None,item=None,*args):
-    yield from bot.coro_send_message(event.conf,_(calendar.HTMLCalendar().formatmonth(2015,11)))
+    yield from bot.coro_send_message(event.conv,_(calendar.HTMLCalendar().formatmonth(2015,11)))
     
     #yield from bot.coro_send_message(event.conv,_("<i>{} scheduled: {} @ {}</i>").format(event.user.full_name,))
 
