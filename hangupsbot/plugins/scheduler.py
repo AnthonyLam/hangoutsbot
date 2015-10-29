@@ -1,7 +1,7 @@
 import plugins,re,calendar
 
 def _initialise(bot):
-    self.schedule = Schedule()
+    schedule = Schedule()
     plugins.register_user_command(["schedule"])
 
 
