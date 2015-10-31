@@ -5,11 +5,22 @@ def _initialise(bot):
     plugins.register_handler(_watch_for_url)
     plugins.register_user_command(["url"])
 
+    # Initialise memory locations
+    if not bot.memory.exists(['url']):
+        bot.memory.set_by_path(['url'],{})
+    if not bot.memory.exists(['ur'],event.conv_id):
+        bot.memory.set_by_path(['url',event.conv_id],{})
+
 def url(bot,event,command):
     if command.startswith("clear"):
-        pass
+        bot.memory.set_by_path(['url',event.conv_id],{})
+        yield from bot.coro_send_message(event.conv_id,"URLS Cleared")
     else:
-        bot.memory.get_by_path(['url',event.conv_id])
+        urls = bot.memory.get_by_path(['url',event.conv_id])
+        html = []
+        for url in enumerate(urls):
+            html.append("<a href={0}>{0}</a>".format(url))
+        yield from bot.coro_send_message(event.conv_id,html)
 
 @asyncio.coroutine
 def _watch_for_url(bot,event,command):
@@ -18,5 +29,5 @@ def _watch_for_url(bot,event,command):
 
     #bot.memory.set_by_path(['url',event.conv_id])
     if url:
-        yield from bot.coro_send_message(event.conv,"Got url: {}".format(url.group(0)))
+        bot.memory.set_by_path(['url',event.conv_id],url.group(0))
 
