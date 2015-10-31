@@ -17,5 +17,5 @@ def _watch_for_url(bot,event,command):
     url = re.search(regex,event.text)
     
     #bot.memory.set_by_path(['url',event.conv_id])
-    event.coro_send_message(event.conv,"Got url: {}".format(url))
+    bot.coro_send_message(event.conv,"Got url: {}".format(url))
 
