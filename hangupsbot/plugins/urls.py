@@ -5,13 +5,14 @@ def _initialise(bot):
     plugins.register_handler(_watch_for_url)
     plugins.register_user_command(["url"])
 
+
+def url(bot,event,command):
     # Initialise memory locations
     if not bot.memory.exists(['url']):
         bot.memory.set_by_path(['url'],{})
     if not bot.memory.exists(['ur'],event.conv_id):
         bot.memory.set_by_path(['url',event.conv_id],{})
 
-def url(bot,event,command):
     if command.startswith("clear"):
         bot.memory.set_by_path(['url',event.conv_id],{})
         yield from bot.coro_send_message(event.conv_id,"URLS Cleared")
