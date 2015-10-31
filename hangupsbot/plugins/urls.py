@@ -18,5 +18,5 @@ def _watch_for_url(bot,event,command):
 
     #bot.memory.set_by_path(['url',event.conv_id])
     if url:
-        bot.coro_send_message(event.conv,"Got url: {}".format(url.group(0)))
+        yield from bot.coro_send_message(event.conv,"Got url: {}".format(url.group(0)))
 
