@@ -5,7 +5,7 @@ def _initialise(bot):
     plugins.register_handler(_watch_for_url)
     plugins.register_user_command(["url"])
 
-def url(bot,event,command)
+def url(bot,event,command):
     if command.startswith("clear"):
         pass
     else:
