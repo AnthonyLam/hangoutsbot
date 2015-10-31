@@ -10,7 +10,7 @@ def url(bot,event,command):
     # Initialise memory locations
     if not bot.memory.exists(['url']):
         bot.memory.set_by_path(['url'],{})
-    if not bot.memory.exists(['ur'],event.conv_id):
+    if not bot.memory.exists(['ur',event.conv_id]):
         bot.memory.set_by_path(['url',event.conv_id],{})
 
     if command.startswith("clear"):
